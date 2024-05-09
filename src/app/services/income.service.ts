@@ -40,7 +40,8 @@ export class IncomeService {
   getIncomes(): Iincome[] {
     return this.incomes;
   }
-  
+
+
   
   getOneIncome(idIncome:number): Iincome {
     if (idIncome >= 0 && idIncome < this.incomes.length) {
