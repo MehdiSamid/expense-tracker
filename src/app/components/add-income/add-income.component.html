@@ -17,15 +17,16 @@
                 <div class="md:col-span-5" >
                   <label for="name">Name</label>
                   <input type="text" formControlName="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" [ngClass]="{ 'bg-red-50 border border-red-500': myForm.controls['name'].errors }"/>
-                  <div *ngIf="myForm.controls['name'].errors" class="text-sm text-red-600">
-                    <div *ngIf="myForm.controls['name'].errors?.['required']">Name is required</div>
+                  <div  class="text-sm text-red-600">
+                    <!-- <div *ngIf="myForm.controls['name'].errors?.['required']">Name is required</div> -->
+                    <span *ngIf="myForm.controls['name'].errors?.['required']">Name Is Required</span>
                   </div>
                 </div>
 
                 <div class="md:col-span-5">
                   <label for="amount">Amount</label>
                   <input type="number" formControlName="amount"  id="amount" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" [ngClass]="{ 'bg-red-50 border border-red-500': myForm.controls['amount'].errors }"/>
-                  <div *ngIf="myForm.controls['amount'].errors" class=" text-sm text-red-600">
+                  <div  class=" text-sm text-red-600">
                     <div *ngIf="myForm.controls['amount'].errors?.['required']">Amount is required</div>
                   </div>
                 </div>
@@ -33,7 +34,7 @@
 
                 <div class="md:col-span-5 text-right mt-4">
                   <div class="inline-flex items-end">
-                    <button type="submit" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    <button [disabled]="myForm.invalid" type="submit" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">Submit</button>
                   </div>
                 </div>
               </div>
