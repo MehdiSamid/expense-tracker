@@ -12,7 +12,7 @@ import { ExpenseService } from '../../services/expense.service';
   templateUrl: './add-expense.component.html',
   styleUrl: './add-expense.component.css'
 })
-export class AddExpenseComponent implements OnInit{
+export class AddExpenseComponent{
   constructor(private expenseService : ExpenseService ){}
   ngOnInit(): void {
     console.log(this.expenseService.getAllExpenses());
