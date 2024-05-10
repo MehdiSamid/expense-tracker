@@ -1,78 +1,76 @@
 import { Injectable } from '@angular/core';
-import { Iincome } from '../interfaces/iincome';
+import { IIncome } from '../interfaces/iincome';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IncomeService {
-
-  private readonly storageKey = 'incomes'; 
+  private readonly storageKey = 'incomes';
+  incomes: IIncome[] = [    {
+    id: 1,
+    name: 'Salary',
+    amount: 3000,
+    date: new Date('2024-05-01'),
+    userId: 1
+  },
+  {
+    id: 2,
+    name: 'Freelance Work',
+    amount: 500,
+    date: new Date('2024-05-05'),
+    userId: 2
+  }];
 
   constructor() {
-    const savedIncomes = localStorage.getItem(this.storageKey);
-    if (savedIncomes) {
-      this.incomes = JSON.parse(savedIncomes);
+    this.loadIncomesFromLocalStorage();
+  }
+
+  private loadIncomesFromLocalStorage(): void {
+    try {
+      const savedIncomes = localStorage.getItem(this.storageKey);
+      if (savedIncomes) {
+        this.incomes = JSON.parse(savedIncomes);
+      }
+    } catch (error) {
+      console.error('Error loading incomes from localStorage:', error);
     }
   }
 
-  incomes: Iincome[] = [
-    {
-      id: 1,
-      name: 'Salary',
-      amount: 5000,
-      date: new Date('2024-05-09'),
-      userId: 1
-    },
-    {
-      id: 2,
-      name: 'Freelance Project',
-      amount: 1000,
-      date: new Date('2024-05-08'),
-      userId: 2
-    },
-  ];
+  private saveIncomesToLocalStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.incomes));
+  }
 
-  addIncome(income: Iincome) {
+  private getNextId(): number {
+    return this.incomes.length > 0 ? Math.max(...this.incomes.map(income => income.id)) + 1 : 1;
+  }
+
+  getAllIncomes(): IIncome[] {
+    return this.incomes;
+  }
+
+  getIncomeById(id: number): IIncome | undefined {
+    return this.incomes.find(income => income.id === id);
+  }
+
+  addIncome(income: IIncome): void {
+    income.id = this.getNextId();
     this.incomes.push(income);
     this.saveIncomesToLocalStorage();
   }
 
-  getIncomes(): Iincome[] {
-    return this.incomes;
-  }
-
-
-  
-  getOneIncome(idIncome:number): Iincome {
-    if (idIncome >= 0 && idIncome < this.incomes.length) {
-      return this.incomes[idIncome];
-    }
-    else{
-      return {
-        id: 0,
-        name: "",
-        amount: 0,
-        date: new Date(),
-        userId: 0
-      }
-  }
-}
-
-  updateIncome(idIncome: number, updatedIncome: Iincome) {
-    if (idIncome >= 0 && idIncome < this.incomes.length) {
-      this.incomes[idIncome] = updatedIncome;
+  updateIncome(updatedIncome: IIncome): void {
+    const index = this.incomes.findIndex(income => income.id === updatedIncome.id);
+    if (index !== -1) {
+      this.incomes[index] = updatedIncome;
       this.saveIncomesToLocalStorage();
     }
   }
 
-  deleteIncome(idIncome: number) {
-    if (idIncome >= 0 && idIncome < this.incomes.length) {
-      this.incomes.splice(idIncome, 1);
+  deleteIncome(id: number): void {
+    const index = this.incomes.findIndex(income => income.id === id);
+    if (index !== -1) {
+      this.incomes.splice(index, 1);
       this.saveIncomesToLocalStorage();
     }
-  }
-
-  private saveIncomesToLocalStorage() {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.incomes));
   }
 }

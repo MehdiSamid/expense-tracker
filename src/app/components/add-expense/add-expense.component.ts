@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Category } from '../../shared/enums/category';
 import { CommonModule } from '@angular/common';
-import { IExpense } from '../../interfaces/iexpense';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ExpenseService } from '../../services/expense.service';
 
