@@ -23,7 +23,7 @@ export class AddIncomeComponent {
     private incomeService: IncomeService,
     private formBuilder: FormBuilder
   ) {}
-
+  submitted: boolean = false
   ngOnInit() {
     console.log(this.incomeService.getAllIncomes());
     this.myForm = this.formBuilder.group({
@@ -37,6 +37,7 @@ export class AddIncomeComponent {
   addIncome() {
     if (this.myForm.valid){
       this.incomeService.addIncome(this.myForm.value);
+      this.submitted=true;
       this.myForm.reset();
     }
   }

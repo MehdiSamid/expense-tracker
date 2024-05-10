@@ -13,6 +13,7 @@ import { ExpenseService } from '../../services/expense.service';
 })
 export class AddExpenseComponent{
   myForm! : FormGroup;
+  submitted: boolean = false;
   constructor(private expenseService : ExpenseService, private formBuilder: FormBuilder  ){}
   ngOnInit(): void {
     console.log(this.expenseService.getAllExpenses());
@@ -29,6 +30,7 @@ export class AddExpenseComponent{
   addExpense() {
     if (this.myForm.valid){
       this.expenseService.addExpense(this.myForm.value);
+      this.submitted=true;
       this.myForm.reset();
     }
   }
