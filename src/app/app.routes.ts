@@ -11,14 +11,14 @@ import { HistoryComponent } from './components/history/history.component';
 
 
   export const routes : Routes = [
-  { path:"addexpense",component: AddExpenseComponent},
-  { path:"addincome", component: AddIncomeComponent},
+  { path:"addexpense",component: AddExpenseComponent ,canActivate:[authGuardGuard]},
+  { path:"addincome", component: AddIncomeComponent ,  canActivate:[authGuardGuard]},
   { path:"updateexpense/:id",component:UpdateExpenseComponent},
   { path:"updateincome/:id",component:UpdateIncomeComponent},
   {path:"login",component: LoginComponent},
   {path:"history", component: HistoryComponent},
    {path:"signup",component: SignupComponent},
-   {path:"",component: HomeComponent , canActivate:[authGuardGuard]},
+   {path:"",component: HomeComponent ,},
 
 
 
