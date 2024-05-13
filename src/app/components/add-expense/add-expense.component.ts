@@ -22,7 +22,7 @@ export class AddExpenseComponent{
       name: [null,[Validators.required]],
       amount: [null,[Validators.required]],
       category: [null,[Validators.required]],
-      date: new Date,
+      date: new Date(),
       user: 0
     });
   }

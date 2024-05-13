@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuardGuard } from './core/Guards/auth-guard.guard';
+import { HistoryComponent } from './components/history/history.component';
 
 
   export const routes : Routes = [
@@ -15,6 +16,7 @@ import { authGuardGuard } from './core/Guards/auth-guard.guard';
   { path:"updateexpense/:id",component:UpdateExpenseComponent},
   { path:"updateincome/:id",component:UpdateIncomeComponent},
   {path:"login",component: LoginComponent},
+  {path:"history", component: HistoryComponent},
    {path:"signup",component: SignupComponent},
    {path:"",component: HomeComponent , canActivate:[authGuardGuard]},
 
