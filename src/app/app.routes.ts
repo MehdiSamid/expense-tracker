@@ -21,6 +21,4 @@ import { HistoryComponent } from './components/history/history.component';
    {path:"",component: HomeComponent ,},
 
 
-
-
 ];

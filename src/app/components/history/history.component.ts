@@ -3,6 +3,7 @@ import { IncomeService } from '../../services/income.service';
 import { ExpenseService } from '../../services/expense.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FinanceService } from '../../services/finance.service';
 
 @Component({
   selector: 'app-history',
@@ -12,44 +13,24 @@ import { RouterModule } from '@angular/router';
   styleUrl: './history.component.css'
 })
 export class HistoryComponent {
-  constructor(private incomeService: IncomeService, private expenseService : ExpenseService){
+  constructor(private incomeService: IncomeService, private expenseService : ExpenseService,private financeService : FinanceService){
   }
-  allFinances : any
-  allExpenses : any;
-  allIncomes : any;
+  allFinances : any;
   ngOnInit(){
-    this.getFinances();
+    this.allFinances = this.financeService.getFinances();
   }
 
   deleteFinance(id : number , item : string){
     if (item === 'expense'){
       this.expenseService.deleteExpense(id);
-      this.getFinances();
-    }
+      this.allFinances = this.financeService.getFinances();
+     }
     else if (item === 'income'){
       this.incomeService.deleteIncome(id)
-      this.getFinances();
+      this.allFinances = this.financeService.getFinances();
     }
     else{
       console.log(item)
     }
   }
-  getFinances (){
-    this.allExpenses=this.expenseService.getAllExpenses().map(expense => this.addType(expense, true));
-    this.allIncomes=this.incomeService.getAllIncomes().map(income=> this.addType(income, false));
-    this.allFinances = this.allExpenses.concat(this.allIncomes);
-    this.allFinances = this.allFinances.sort((a:any, b:any) => {
-      console.log("Comparing dates:", a.date, b.date);
-      return a.date - b.date;
-  });
-    console.log(this.allFinances)
-  }
-  
-  private addType(obj: object, isExpense: boolean): object {
-    return {
-      ...obj,
-      type: isExpense ? "expense" : "income"
-    };
-  }
-
 }
