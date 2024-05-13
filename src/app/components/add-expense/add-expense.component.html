@@ -13,28 +13,34 @@
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div class="md:col-span-5" >
                   <label for="name">Name</label>
-                  <input type="text" formControlName="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" [ngClass]="{ 'bg-red-50 border border-red-500': myForm.controls['name'].errors }"/>
-                  <div *ngIf="myForm.controls['name'].errors" class="text-sm text-red-600">
-                    <div *ngIf="myForm.controls['name'].errors?.['required']">Name is required</div>
-                  </div>
+                  <input type="text" formControlName="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                  <!-- <div *ngIf="myForm.controls['name'].errors" >
+                    <div *ngIf="!myForm.controls['name'].errors?.['required']" class="text-sm text-red-600">Name is required</div>
+                  </div> -->
+                  <span class="text-danger"
+                  *ngIf="(myForm.controls['name'].touched || submitte) && myForm.controls['name'].errors?.['required']"  class="text-sm text-red-600">
+                  Name is required
+              </span>
                 </div>
 
                 <div class="md:col-span-5">
                   <label for="amount">Amount</label>
-                  <input type="number" formControlName="amount"  id="amount" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" [ngClass]="{ 'bg-red-50 border border-red-500': myForm.controls['amount'].errors }"/>
-                  <div *ngIf="myForm.controls['amount'].errors" class=" text-sm text-red-600">
-                    <div *ngIf="myForm.controls['amount'].errors?.['required']">Amount is required</div>
-                  </div>
+                  <input type="number" formControlName="amount"  id="amount" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                  <span class="text-danger"
+                  *ngIf="(myForm.controls['amount'].touched || submitte) && myForm.controls['amount'].errors?.['required']"  class="text-sm text-red-600">
+                  Amount is required
+              </span>
                 </div>
                 <div class="md:col-span-5">
                   <label for="category">Category</label>
-                  <select id="category" formControlName="category"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" [ngClass]="{ 'bg-red-50 border border-red-500': myForm.controls['category'].errors }">
+                  <select id="category" formControlName="category"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                     <option value="" selected hidden disabled>Select an option</option>
                     <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
                   </select>
-                  <div *ngIf="myForm.controls['category'].errors" class="text-sm text-red-600">
-                    <div *ngIf="myForm.controls['category'].errors?.['required']">Category is required</div>
-                  </div>
+                   <span class="text-danger"
+                  *ngIf="(myForm.controls['category'].touched || submitte) && myForm.controls['category'].errors?.['required']"  class="text-sm text-red-600">
+                  Category is required
+              </span>
                 </div>
 
                 <div class="md:col-span-5 text-right mt-4">

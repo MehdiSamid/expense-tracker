@@ -14,13 +14,14 @@ import { ExpenseService } from '../../services/expense.service';
 export class AddExpenseComponent{
   myForm! : FormGroup;
   submitted: boolean = false;
+  submitte: boolean = false;
   constructor(private expenseService : ExpenseService, private formBuilder: FormBuilder  ){}
   ngOnInit(): void {
     console.log(this.expenseService.getAllExpenses());
-    this.myForm= this.formBuilder.group({ 
+    this.myForm= this.formBuilder.group({
       id: 0,
-      name: [null,[Validators.required]],
-      amount: [null,[Validators.required]],
+      name: ['',[Validators.required]],
+      amount: ['',[Validators.required]],
       category: [null,[Validators.required]],
       date: new Date,
       user: 0
@@ -28,7 +29,9 @@ export class AddExpenseComponent{
   }
   categories = Object.keys(Category).filter(k => typeof Category[k as any] === "number");
   addExpense() {
+    this.submitte = true;
     if (this.myForm.valid){
+      this.submitte = false;
       this.expenseService.addExpense(this.myForm.value);
       this.submitted=true;
       this.myForm.reset();

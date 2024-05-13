@@ -16,7 +16,7 @@ import { authGuardGuard } from './core/Guards/auth-guard.guard';
   { path:"updateincome/:id",component:UpdateIncomeComponent},
   {path:"login",component: LoginComponent},
    {path:"signup",component: SignupComponent},
-   {path:"",component: HomeComponent ,},
+   {path:"",component: AddExpenseComponent ,},
 
 
 
