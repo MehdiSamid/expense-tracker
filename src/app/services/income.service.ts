@@ -51,6 +51,10 @@ export class IncomeService {
   getIncomeById(id: number): IIncome | undefined {
     return this.incomes.find(income => income.id === id);
   }
+   
+  getdate() : Date[]{
+    return this.incomes.map(income => income.date);
+  }
 
   addIncome(income: IIncome): void {
     income.id = this.getNextId();
