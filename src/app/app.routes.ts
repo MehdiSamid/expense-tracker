@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuardGuard } from './core/Guards/auth-guard.guard';
 import { HistoryComponent } from './components/history/history.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
   export const routes : Routes = [
@@ -15,6 +16,7 @@ import { HistoryComponent } from './components/history/history.component';
   { path:"addincome", component: AddIncomeComponent ,  canActivate:[authGuardGuard]},
   { path:"updateexpense/:id",component:UpdateExpenseComponent},
   { path:"updateincome/:id",component:UpdateIncomeComponent},
+  { path:"calendar",component:CalendarComponent},
   {path:"login",component: LoginComponent},
   {path:"history", component: HistoryComponent},
    {path:"signup",component: SignupComponent},
