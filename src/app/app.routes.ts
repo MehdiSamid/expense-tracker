@@ -7,18 +7,15 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuardGuard } from './core/Guards/auth-guard.guard';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
-
-  export const routes : Routes = [
-  { path:"addexpense",component: AddExpenseComponent},
-  { path:"addincome", component: AddIncomeComponent},
-  { path:"updateexpense/:id",component:UpdateExpenseComponent},
-  { path:"updateincome/:id",component:UpdateIncomeComponent},
-  {path:"login",component: LoginComponent},
-   {path:"signup",component: SignupComponent},
-   {path:"",component: HomeComponent , canActivate:[authGuardGuard]},
-
-
-
-
+export const routes: Routes = [
+  { path: 'addexpense', component: AddExpenseComponent },
+  { path: 'addincome', component: AddIncomeComponent },
+  {path:'calendar', component: CalendarComponent},
+  { path: 'updateexpense/:id', component: UpdateExpenseComponent },
+  { path: 'updateincome/:id', component: UpdateIncomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '', component: HomeComponent, canActivate: [authGuardGuard] },
 ];
